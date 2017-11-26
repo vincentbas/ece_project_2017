@@ -10,10 +10,10 @@ Node Application Metrics monitoring and profiling agent
 Type                | Packages       | Description
 :--------------------|:-------------------------|:-----------------------------
 Transpilers         | `pug`                    | HTML transpiler [Doc: pugjs.org](http://pugjs.org/)  
-                    | `stylus`                 | CSS transpiler [Doc: stylus-lang.com](http://stylus-lang.com)
-                    | `coffeescript`           | Javascript transpiler [Doc: coffeescript.org/](http://coffeescript.org/)
+Transpilers         | `stylus`                 | CSS transpiler [Doc: stylus-lang.com](http://stylus-lang.com)
+Transpilers         | `coffeescript`           | Javascript transpiler [Doc: coffeescript.org/](http://coffeescript.org/)
 Tests               | `mocha`                  | [Doc: mochajs.org/](http://mochajs.org/)
-                    | `should`                 | [Doc: shouldjs.github.io/](http://shouldjs.github.io/)
+Tests               | `should`                 | [Doc: shouldjs.github.io/](http://shouldjs.github.io/)
 
 
 ### Installation
