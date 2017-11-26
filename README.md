@@ -1,24 +1,39 @@
 
-# AST 2017 - Express codebase
+# ECE Metrics Application
+Node Application Metrics monitoring and profiling agent
 
-Code base for ECE AST class' final project
+![Build](https://travis-ci.org/vincentbas/asynchronus_tehnologies_server_BAS.svg?branch=master)
 
-## Installation instructions
+## Getting Started
 
-Just clone it from github & run `npm install`
+### Environment
+Type                | Packages       | Description
+:--------------------|:-------------------------|:-----------------------------
+Transpilers         | `pug`                    | HTML transpiler [Doc: pugjs.org](http://pugjs.org/)  
+                    | `stylus`                 | CSS transpiler [Doc: stylus-lang.com](http://stylus-lang.com)
+                    | `coffeescript`           | Javascript transpiler [Doc: coffeescript.org/](http://coffeescript.org/)
+Tests               | `mocha`                  | [Doc: mochajs.org/](http://mochajs.org/)
+                    | `should`                 | [Doc: shouldjs.github.io/](http://shouldjs.github.io/)
 
-## Run
 
-Use `nodemon src/app.coffee` or `npm start`
+### Installation
+You will find steps to get Node Application Metrics :<br>
+  * Github ([install from source](https://github.com/RuntimeTools/appmetrics/wiki/Install-direct-from-github-source) by cloning the git repository. Requires a compiler)
+  * Go to your repository and launch `npm install`
 
-## Tests
-
-Use `npm test` or `./bin/test`
-
-## Contributors
-
-Charles Andre & Vincent Bas
+## Run & Test
+You will find steps to run & test Node Application Metrics :<br>
+  * Run: Go to your repository and launch `npm start`
+  * Test: Go to your repository and launch `npm test`
 
 ## License
+This project is released under an Apache 2.0 open source license.  
 
-Apache2
+## Version
+The current version is : `1.0.0`
+
+## Release History
+`1.0.0` - First release.
+
+## Contributors
+Charles ANDRE & Vincent BAS

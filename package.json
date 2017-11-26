@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "Ece class project",
   "scripts": {
-    "start": "./bin/start",
-    "compile": "./bin/compile",
-    "test": "./bin/test tests/*"
+    "start": "bash bin/start",
+    "compile": "bash bin/compile",
+    "test": "bash bin/test tests/*"
   },
   "author": "charles andre & vincent bas",
   "license": "ISC",
