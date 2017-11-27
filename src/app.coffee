@@ -32,6 +32,7 @@ app.post '/metrics.json/:id', (req, res) ->
     res.status(200).send 'metrics saved'
 
 app.get '/deletemetrics/:timestamp', (req, res) ->
+  console.log("deleting")
   metrics.deletemetrics 1, req.params.timestamp, (err)->
     throw next err if err
     res.status(200).send "metrics deleted"
