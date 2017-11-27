@@ -9,7 +9,8 @@ module.exports =
   # - id: metric's id
   # - callback: the callback function, callback(err, data)
   get: (id, callback) ->
-    callback(null)
+    if callback
+      callback(null)
     #rs = db.createReadStream(...)
     #read
 
