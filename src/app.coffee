@@ -22,7 +22,7 @@ app.get '/hello/:name', (req, res) ->
   res.send "Hello #{req.params.name}"
 
 app.get '/metrics.json', (req, res) ->
-  metrics.get "id", (err, data) ->
+  metrics.get 1, (err, data) ->
     throw next err if err
     res.status(200).json data
 
@@ -30,6 +30,14 @@ app.post '/metrics.json/:id', (req, res) ->
   metrics.save req.params.id, req.body, (err) ->
     throw next err if err
     res.status(200).send 'metrics saved'
+
+app.get '/deletemetrics/:timestamp', (req, res) ->
+  metrics.deletemetrics 1, req.params.timestamp, (err)->
+    throw next err if err
+    res.status(200).send "metrics deleted"
+
+
+
 
 app.listen app.get('port'), () ->
   console.log "Server listening on #{app.get 'port'} !"

@@ -13,9 +13,10 @@ module.exports =
     result = []
     rs.on 'data', (data) ->
       [ _, key_id, ts ] = data.key.split ":"
-      result.push
-        timestamp: ts
-        value: data.value
+      if "#{id}" == key_id
+        result.push
+          timestamp: ts
+          value: data.value
     rs.on 'error', (err) -> callback(err)
     rs.on 'close', -> callback(null, result)
 
@@ -34,3 +35,7 @@ module.exports =
         key: "metrics:#{id}:#{timestamp}"
         value: value
     ws.end()
+
+  deletemetrics: (id, ts, callback) ->
+    db.del("metrics:#{id}:#{ts}")
+    callback(null)
