@@ -7,7 +7,7 @@
     "compile": "bash bin/compile",
     "test": "bash bin/test tests/*"
   },
-  "author": "charles andre & vincent bas",
+  "author": "cesar berezowski",
   "license": "ISC",
   "dependencies": {
     "coffee-script": "^1.12.7",
