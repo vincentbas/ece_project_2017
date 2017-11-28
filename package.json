@@ -12,6 +12,8 @@
   "dependencies": {
     "coffee-script": "^1.12.7",
     "express": "^4.16.2",
+    "express-authentication": "^0.3.2",
+    "express-authentication-basic": "^0.3.1",
     "jstransformer-coffee-script": "^1.1.0",
     "level": "^2.0.0",
     "level-writestream": "^0.1.3",
