@@ -2,15 +2,15 @@ express = require 'express'
 bodyparser = require 'body-parser'
 metrics = require './metrics'
 users = require './users'
+session = require 'express-session'
 
 app = express()
+app.use(session({secret: 'ssshhhhh'}));
+
 
 isAuthenticated = (req, res, next) ->
-  # do any checks you want to in here
-  # CHECK THE USER STORED IN SESSION FOR A CUSTOM VARIABLE
-  # you can do this however you want with whatever variables you set up
-
-  # IF A USER ISN'T LOGGED IN, THEN REDIRECT THEM SOMEWHERE
+  sess=req.session;
+  console.log(sess.secret)
   res.redirect '/auth'
   return
 
@@ -50,10 +50,16 @@ app.get '/deletemetrics/:timestamp', (req, res) ->
     throw next err if err
     res.status(200).send "metrics deleted"
 
-app.post '/authenticate', (req, res) ->
-  users.checkuser req.body, (err)->
+app.post '/signin', (req, res) ->
+  users.checkuser req.body, (err, res)->
     throw next err if err
-  res.status(200).send "Okay"
+  res.redirect('/')
+
+app.post '/signup', (req, res) ->
+  users.save req.body, (err, res) ->
+    throw next err if err
+    res.redirect('/')
+
 
 
 app.listen app.get('port'), () ->
