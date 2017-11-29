@@ -1,25 +1,31 @@
 level = require 'level'
 levelws = require 'level-ws'
 
-db = levelws level "#{__dirname}/../userdb"
+db = levelws level "#{__dirname}/../dbuser"
 
 module.exports =
 
   checkuser: (body, callback) ->
     rs = db.createReadStream()
-    result=[]
+    result= null
+    name = null
     { login, pw } =  body
     rs.on 'data', (data) ->
-      if data.key == login
+      [id,loginn] = data.key.split ":"
+      if loginn == login
         if data.value == pw
-          console.log(data.key)
-          console.log(data.value)
-          result = data.key
+          result = id
+          name = loginn
     rs.on 'error', (err) -> callback(err)
-    rs.on 'close', (err) -> callback(null, result)
+    rs.on 'close', -> callback(null, result, name)
 
 
   save: (body, callback) ->
     { login, pw } =  body
-    db.put("#{login}/", pw)
-    callback(null, 1)
+    rs = db.createReadStream()
+    highestid = 1
+    rs.on 'data', (data) ->
+      highestid += 1
+    rs.on 'close', ->
+      db.put("#{highestid}:#{login}", pw)
+      callback(null, 1)

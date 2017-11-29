@@ -9,10 +9,10 @@ app.use(session({secret: 'ssshhhhh'}));
 
 
 isAuthenticated = (req, res, next) ->
-  sess=req.session;
-  console.log(sess.secret)
-  res.redirect '/auth'
-  return
+    if req.session.authenticated
+      next()
+    else
+      res.redirect '/auth'
 
 app.set 'port', '8888'
 app.set 'views', "#{__dirname}/../views"
@@ -25,17 +25,13 @@ app.use '/', express.static "#{__dirname}/../public"
 
 app.get '/', isAuthenticated,  (req, res) ->
   res.render 'index',
-    text: "Hello world !"
-
-app.get '/hello/:name', (req, res) ->
-  res.send "Hello #{req.params.name}"
+    name: req.session.username
 
 app.get '/auth', (req, res) ->
-  res.render 'auth',
-    text: "Connect !"
+  res.render 'auth'
 
 app.get '/metrics.json', (req, res) ->
-  metrics.get 1, (err, data) ->
+  metrics.get req.session.userid, (err, data) ->
     throw next err if err
     res.status(200).json data
 
@@ -51,15 +47,25 @@ app.get '/deletemetrics/:timestamp', (req, res) ->
     res.status(200).send "metrics deleted"
 
 app.post '/signin', (req, res) ->
-  users.checkuser req.body, (err, res)->
+  users.checkuser req.body, (err, id, login)->
+
     throw next err if err
-  res.redirect('/')
+    if id != null
+     req.session.authenticated = true
+     req.session.userid = id
+     req.session.username = login
+    res.redirect('/')
+
 
 app.post '/signup', (req, res) ->
-  users.save req.body, (err, res) ->
+  users.save req.body, (err) ->
     throw next err if err
     res.redirect('/')
 
+app.get '/logout', (req, res) ->
+  req.session.authenticated = false
+  req.session.id = null
+  res.redirect('/')
 
 
 app.listen app.get('port'), () ->

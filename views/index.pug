@@ -10,9 +10,10 @@ block head
   link(rel='stylesheet', href='/css/bootstrap-theme.min.css')
 
 block content
+  a(href="/logout") Logout
   div.container
     div.col-md-6.col-md-offset-3
-      p #{text}
+      h1 Hello #{name} !
       button#show-metrics(type="button" class="btn btn-success") Bring the metrics
       #metrics
     script
