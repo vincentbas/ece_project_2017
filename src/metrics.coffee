@@ -1,7 +1,7 @@
 level = require 'level'
 levelws = require 'level-ws'
 
-db = levelws level "#{__dirname}/../db"
+db = levelws level "#{__dirname}/../dbmetrics"
 
 module.exports =
   # get(id, callback)
@@ -31,10 +31,16 @@ module.exports =
     ws.on 'close', callback
     for metric in metrics
       { timestamp, value } =  metric
+      console.log(timestamp)
+      console.log(value)
       ws.write
         key: "metrics:#{id}:#{timestamp}"
         value: value
     ws.end()
+
+  add: (id, metrics, callback) ->
+    db.put("metrics:#{id}:#{metrics.ts}", metrics.val)
+    callback(null)
 
   deletemetrics: (id, ts, callback) ->
     db.del("metrics:#{id}:#{ts}")

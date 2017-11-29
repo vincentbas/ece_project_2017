@@ -40,9 +40,17 @@ app.post '/metrics.json/:id', (req, res) ->
     throw next err if err
     res.status(200).send 'metrics saved'
 
+app.get '/newmetrics', isAuthenticated,  (req, res) ->
+  res.render 'add',
+    uid: req.session.userid
+
+app.post '/newmetrics/add', isAuthenticated, (req, res) ->
+  metrics.add req.session.userid, req.body, (err) ->
+    throw next err if err
+    res.redirect('/')
 
 app.get '/deletemetrics/:timestamp', (req, res) ->
-  metrics.deletemetrics 1, req.params.timestamp, (err)->
+  metrics.deletemetrics req.session.userid, req.params.timestamp, (err)->
     throw next err if err
     res.status(200).send "metrics deleted"
 
