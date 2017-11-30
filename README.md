@@ -2,7 +2,7 @@
 # ECE Metrics Application
 Node Application Metrics monitoring and profiling agent
 
-![Build](https://travis-ci.org/vincentbas/asynchronus_tehnologies_server_BAS.svg?branch=master)
+![Build](https://travis-ci.org/vincentbas/ece_project_2017.svg?branch=master)
 
 ## Getting Started
 
