@@ -148,14 +148,14 @@ block content
               content += "</ul>"
               $("#metrics").append content
   
-  script.
-    $('.container').on('click', 'button#del', function(){
-      element = $(this).parent()
-      value = element.data('val');
-      console.log(value)
-      $.get( "deletemetrics/"+value, function( data ) {
-        element.hide()
-      });
-    })
+    script.
+      $('body').on('click', 'button#del', function(){
+        element = $(this).parent()
+        value = element.data('val');
+        console.log(value)
+        $.get( "deletemetrics/"+value, function( data ) {
+          element.hide()
+        });
+      })
 
     
