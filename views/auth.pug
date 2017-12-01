@@ -13,26 +13,37 @@ block head
     
 block content
   div.container
-    
     div.row
-      h2 SignIn
-      form(method='post', action='/signin')
-        div
-          label Login
-          input(type='text' name='login' class='form-control')
-        div
-          label Password
-          input(type='password', name='pw' class='form-control')
-        input(type="submit" class='btn btn-primary')
-          
-    div.row
-      h2 SignUp
-      form(method='post', action='/signup')
-        div
-          label Login
-          input(type='text' name='login' class='form-control')
-        div
-          label Password
-          input(type='password', name='pw' class='form-control')
-        input(type="submit" class='btn btn-primary')
+      div.col-lg-6.col-md-6.col-sm-6.col-xs-6
+        hgroup.my-auto
+          form(method='post', action='/signin')
+            div.group
+              input(type='text' name='login')
+              span.highlight
+              span.bar       
+              label Email 
+            div.group
+              input(type='password', name='pw')
+              span.highlight
+              span.bar      
+              label Password    
+            button.button.buttonBlue(type="submit") Se connecter
+              div.ripples.buttonRipples
+                span.ripplesCircle
+      div.col-lg-6.col-md-6.col-sm-6.col-xs-6
+        hgroup
+          form(method='post', action='/signup')
+            div.group
+              input(type='text' name='login')
+              span.highlight
+              span.bar       
+              label Email
+            div.group
+              input(type='password', name='pw')
+              span.highlight
+              span.bar      
+              label Password    
+            button.button.buttonBlue(type="submit") S'inscrire
+              div.ripples.buttonRipples
+                span.ripplesCircle
       
