@@ -3,5 +3,5 @@ db/*
 lib/*
 !*/.gitkeep
 *.log
-dbusers/
+dbuser/
 dbmetrics/
