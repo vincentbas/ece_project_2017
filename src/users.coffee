@@ -17,6 +17,7 @@ module.exports =
           result = id
           name = loginn
     rs.on 'error', (err) -> callback(err)
+    console.log(result)
     rs.on 'close', -> callback(null, result, name)
 
 

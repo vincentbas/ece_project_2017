@@ -56,8 +56,8 @@ app.get '/deletemetrics/:timestamp', (req, res) ->
 
 app.post '/signin', (req, res) ->
   users.checkuser req.body, (err, id, login)->
-
     throw next err if err
+    console.log(id)
     if id != null
      req.session.authenticated = true
      req.session.userid = id
