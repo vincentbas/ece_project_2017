@@ -19,29 +19,29 @@ block content
           form.ombrage(method='post', action='/signin')
             p Déjà membre, connectez-vous
             div.group
-              input(type='text' name='login')
+              input(type='text' name='login' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required)
               span.highlight
               span.bar       
               label Email 
             div.group
-              input(type='password', name='pw')
+              input(type='password', name='pw' pattern=".{6,}" required)
               span.highlight
               span.bar      
               label Mot de passe    
             button.button.buttonBlue(type="submit") Se connecter
               div.ripples.buttonRipples
                 span.ripplesCircle
-      div.col-lg-6.col-md-6.col-sm-6.col-xs-6
+      div.col-lg-6.col-md-6.col-sm-6.col-xs-6#essai
         hgroup
           form.ombrage(method='post', action='/signup')
             p Pas de compte, inscrivez-vous
             div.group
-              input(type='text' name='login')
+              input(type='text' name='login' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required)
               span.highlight
               span.bar       
               label Email
             div.group
-              input(type='password', name='pw')
+              input(type='password' name='pw' pattern=".{6,}" required)
               span.highlight
               span.bar      
               label Mot de passe   

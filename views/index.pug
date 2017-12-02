@@ -119,8 +119,7 @@ block content
               content = "<ul id='display-metrics'>"
               for d in data
                 content += "<li data-val='#{d.timestamp}'>timestamp: #{d.timestamp}, value: #{d.value} <button class='btn btn-danger' id='del'> Delete metrics</button></li>"
-                dataset.push(parseInt(d.value))
-              console.log(dataset)		
+                dataset.push(parseInt(d.value))	
               w = 500 
               h = 300
               barPadding = 1
@@ -149,7 +148,6 @@ block content
       $('body').on('click', 'button#del', function(){
         element = $(this).parent()
         value = element.data('val');
-        console.log(value)
         $.get( "deletemetrics/"+value, function( data ) {
           element.hide()
         });

@@ -31,8 +31,6 @@ module.exports =
     ws.on 'close', callback
     for metric in metrics
       { timestamp, value } =  metric
-      console.log(timestamp)
-      console.log(value)
       ws.write
         key: "metrics:#{id}:#{timestamp}"
         value: value
