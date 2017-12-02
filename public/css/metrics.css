@@ -493,3 +493,20 @@ a:hover, button:hover{
 .form-margin{
   margin-bottom:20px;
 }
+
+.bar {
+  fill: orange;
+}
+
+.axis {
+  font-size: 10px;
+}
+
+.axis line {
+  stroke: black;
+  fill: none;
+}
+
+.axis path, .x.axis line {
+  display: none;
+}

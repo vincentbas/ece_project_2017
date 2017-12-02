@@ -80,14 +80,9 @@ block content
       section.charts
         .container-fluid
           .row
-            .col-md-6
+            .col-md-12
               .chart-container
                 h3 Chart
-                canvas#myChart
-            .col-md-6
-              .chart-container
-                h3 Chart2
-                canvas#myChart2
       section.admins
         .container-fluid
           .row
@@ -119,17 +114,19 @@ block content
             dataset = []
             e.preventDefault()
             $.getJSON "/metrics.json", {}, (data) ->
-              content = "<ul>"
+              $( "#display-metrics" ).remove();
+              $( "svg" ).remove();
+              content = "<ul id='display-metrics'>"
               for d in data
                 content += "<li data-val='#{d.timestamp}'>timestamp: #{d.timestamp}, value: #{d.value} <button class='btn btn-danger' id='del'> Delete metrics</button></li>"
                 dataset.push(parseInt(d.value))
               console.log(dataset)		
               w = 500 
-              h = 800
+              h = 300
               barPadding = 1
-
+              
               #Create SVG element
-              svg = d3.select('body').append('svg').attr('width', w).attr('height', h)
+              svg = d3.select('.chart-container').append('svg').attr('width', w).attr('height', h)
               svg.selectAll('rect').data(dataset).enter().append('rect').attr('x', (d, i) ->
                 i * w / dataset.length
               ).attr('y', (d) ->
@@ -144,7 +141,7 @@ block content
                 i * w / dataset.length + 5
               ).attr('y', (d) ->
                 h - (d * 4) + 15
-              ).attr('font-family', 'sans-serif').attr('font-size', '11px').attr 'fill', 'white'
+              ).attr('font-family', 'sans-serif').attr('font-size', '15px').attr 'fill', 'white'
               content += "</ul>"
               $("#metrics").append content
   
