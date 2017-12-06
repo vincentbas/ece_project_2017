@@ -12,7 +12,7 @@ module.exports =
     rs = db.createReadStream()
     result = []
     rs.on 'data', (data) ->
-      [ _, key_id, ts ] = data.key.split ":"
+      [ _, key_id, ts ] = data.key.split "//"
       if "#{id}" == key_id
         result.push
           timestamp: ts
@@ -31,15 +31,16 @@ module.exports =
     ws.on 'close', callback
     for metric in metrics
       { timestamp, value } =  metric
+      console.log(timestamp)
       ws.write
-        key: "metrics:#{id}:#{timestamp}"
+        key: "metrics//#{id}//#{timestamp}"
         value: value
     ws.end()
 
   add: (id, metrics, callback) ->
-    db.put("metrics:#{id}:#{metrics.ts}", metrics.val)
+    db.put("metrics//#{id}//#{metrics.ts}", metrics.val)
     callback(null)
 
   deletemetrics: (id, ts, callback) ->
-    db.del("metrics:#{id}:#{ts}")
+    db.del("metrics//#{id}//#{ts}")
     callback(null)

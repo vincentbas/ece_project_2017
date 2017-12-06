@@ -143,14 +143,11 @@ block content
               ).attr('font-family', 'sans-serif').attr('font-size', '15px').attr 'fill', 'white'
               content += "</ul>"
               $("#metrics").append content
-  
-    script.
-      $('body').on('click', 'button#del', function(){
-        element = $(this).parent()
-        value = element.data('val');
-        $.get( "deletemetrics/"+value, function( data ) {
-          element.hide()
-        });
-      })
-
-    
+        
+        $('body').on 'click', 'button#del', ->
+          element = $(this).parent()
+          value = element.data('val')
+          $.get 'deletemetrics/' + value, (data) ->
+            element.hide()
+            return
+          return
