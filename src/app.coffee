@@ -63,6 +63,7 @@ app.post '/signin', (req, res) ->
      req.session.username = login
     res.redirect('/')
 
+
 app.post '/signup', (req, res) ->
   users.save req.body, (err) ->
     throw next err if err
