@@ -10,6 +10,8 @@
   "author": "cesar berezowski",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
+    "bcrypt-nodejs": "0.0.3",
     "coffee-script": "^1.12.7",
     "express": "^4.16.2",
     "express-authentication": "^0.3.2",

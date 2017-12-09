@@ -1,5 +1,6 @@
 level = require 'level'
 levelws = require 'level-ws'
+bcrypt = require 'bcrypt-nodejs'
 
 db = levelws level "#{__dirname}/../dbuser"
 
@@ -18,7 +19,8 @@ module.exports =
       rs.on 'data', (data) ->
         [id,loginn] = data.key.split ":"
         if loginn == login
-          if data.value == pw
+          checkpw = bcrypt.compareSync(pw , data.value)
+          if checkpw == true
             result = id
             name = loginn
       rs.on 'error', (err) -> callback(err)
@@ -32,6 +34,8 @@ module.exports =
     patt_pw = /^.{6,}$/i
     res_pw = patt_pw.test(pw);
     if res_email == true && res_pw == true
+      hash = bcrypt.hashSync(pw)
+      pw = hash
       rs = db.createReadStream()
       highestid = 1
       rs.on 'data', (data) ->

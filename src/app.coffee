@@ -42,6 +42,7 @@ app.post '/metrics.json/:id', (req, res) ->
 
 app.get '/newmetrics', isAuthenticated,  (req, res) ->
   res.render 'add',
+    name: req.session.username
     uid: req.session.userid
 
 app.post '/newmetrics/add', isAuthenticated, (req, res) ->
